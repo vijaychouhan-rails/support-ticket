@@ -7,7 +7,7 @@
     "build-dev": "webpack --config webpack.config.js",
     "clean-public": "npm run remove-public && mkdir public",
     "remove-public": "node_modules/.bin/rimraf ./public",
-    "start-dev-server": "node server.js -b 192.168.0.120 --progress --inline --hot"
+    "start-dev-server": "node server.js --progress --inline --hot"
   },
   "engines": {
     "node": "6.0.0"

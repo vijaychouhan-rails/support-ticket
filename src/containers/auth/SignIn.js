@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import * as AuthActions from '../../actions/auth';
+import * as AuthActions from '../../actions/auth';
 import { bindActionCreators } from 'redux';
 import Immutable from 'immutable';
 
@@ -33,40 +33,46 @@ export class SignIn extends React.Component {
   }
 
   renderField(field) {
-    var inputType = field.inputType ? field.inputType : 'text' 
-
     return(
-      <div className={`form-group ${field.meta.touched && field.meta.error ? 'has-error' : ''}`}>
-        <input {...field.input} type={inputType} className={`form-control ${field.className}`} placeholder={field.placeholder}/>
-        {field.meta.touched &&  field.meta.error && 
-         <span className="control-label">{field.meta.error}</span>}
+      <div className={`margin-bottom-20 ${field.meta.touched && field.meta.error ? 'has-error' : ''}`}>
+        <div className='input-group'>
+          <span className="input-group-addon"><i className={field.spanClassName}></i></span>
+          <input {...field.input} type={field.inputType} className='form-control' placeholder={field.placeholder}/>
+        </div>
+        {field.meta.touched &&  field.meta.error &&  <span className="control-label">{field.meta.error}</span>}
       </div>
-    )  
+    )
   }
 
-  handleSubmit({email, password}) {      
-    // this.props.authActions.createSession({email, password})
+  handleSubmit({email, password}) {  
+    this.props.authActions.createSession({email, password})
   }
 
   render() {
     const { handleSubmit, isSubmitting, auth } = this.props;
     return (
-      <div className="jumbotron center-block">
-        <h3>Login</h3>
-        <form onSubmit={handleSubmit(this.handleSubmit)} >
-          <div className="form-group">
-            <Field name="email" className='' component={this.renderField} inputType='' placeholder="Email"/>
+      <div className="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div className="panel panel-info" >
+          <div className="panel-heading">
+            <div className="panel-title">Sign In</div>
           </div>
+          <div  className="panel-body" >
+            { auth.getIn(['errors']) && <div id="login-alert" className="alert alert-danger col-sm-12"> { auth.getIn(['errors']) } </div>
+            }
+            
+            <form onSubmit={handleSubmit(this.handleSubmit)} >
+              <Field name="email" component={this.renderField} inputType='text' placeholder="Email address" spanClassName='glyphicon glyphicon-envelope'/>
 
-          <div className="form-group">
-            <Field name="password" className='' component={this.renderField} inputType='password' ref='password' placeholder="Password" placeholder="Password"/>
+              <Field name="password" className='' component={this.renderField} inputType='password' ref='password' placeholder="Password" spanClassName='glyphicon glyphicon-lock'/>
+             
+              <div className="form-group">
+                <div className="col-sm-12 controls">
+                  <button type="submit" className="btn btn-success" disabled={isSubmitting}>Login</button>
+                </div>
+              </div>
+            </form>
           </div>
-
-          <div className="form-group">
-            <button type="submit" className="btn btn-default" disabled={isSubmitting}>Login</button>
-          </div>
-        </form>
-          <div className='error-message'>{auth.getIn(['errors'])}</div>
+        </div>
       </div>
     );
   }
@@ -82,7 +88,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    // authActions: bindActionCreators(AuthActions, dispatch)
+    authActions: bindActionCreators(AuthActions, dispatch)
   }
 }
 

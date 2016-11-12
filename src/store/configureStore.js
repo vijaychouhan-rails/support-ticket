@@ -38,11 +38,7 @@ export default function configureStore(i_state={}) {
                 autoRehydrate(), window.devToolsExtension ? window.devToolsExtension() : f => f
               )(createStore)(rootReducer, initialState)
 
-  persistStore(store, {transforms: [expireTransform, compressor], blacklist: ['auth'], storage: localForage, keyPrefix: 'supportSystem' }, () => {
-    // store.dispatch({
-    //   type: REHYDRATED_DONE
-    // })
-    console.log('=======================store rehydration complete========================')
+  persistStore(store, {transforms: [expireTransform, compressor], whitelist: ['auth'], storage: localForage, keyPrefix: 'supportSystem' }, () => {
   })
 
   if (module.hot) {

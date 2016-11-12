@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Navbar, Nav, NavItem, Button } from 'react-bootstrap';
 import Immutable from 'immutable';
+import * as AuthActions from '../actions/auth';
 
 import { bindActionCreators } from 'redux';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -15,8 +16,7 @@ class Header extends React.Component {
   }
   
   handleClick(event){
-    // this.props.authActions.destroySession();
-    console.log("===========handleClick==========")
+    this.props.authActions.destroySession();
     event.preventDefault()
   }
 
@@ -45,7 +45,7 @@ class Header extends React.Component {
             <NavItem>Login</NavItem>
           </LinkContainer>
 
-          <LinkContainer to={{ pathname: '/signup' }} className="nav-link">
+          <LinkContainer to={{ pathname: '/register' }} className="nav-link">
             <NavItem>SignUp</NavItem>
           </LinkContainer>
 
@@ -79,7 +79,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    // authActions: bindActionCreators(AuthActions, dispatch)
+    authActions: bindActionCreators(AuthActions, dispatch)
   }
 }
 
