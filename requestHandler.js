@@ -22,7 +22,7 @@ function handleRender(req,res) {
     if (err) {
       res.status(500).send("Could not fulfill this request. Please try again later.")
     } else if (redirectLocation) {
-      console.log("=============error1===========================")
+      console.log("=============redirectLocation block===========================")
       return res.redirect(302, redirectLocation.pathname + redirectLocation.search)
     } else if (renderProps) {
       const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
@@ -34,20 +34,19 @@ function handleRender(req,res) {
       const initialState = store.getState();
       res.status(200).send(renderFullPage(body, initialState))
     } else {
-      console.log("=============error22222===========================")
       res.status(404).send('Not found')
     }
 
   })
 }
 
-function renderFullPage(component,initialState){
+function renderFullPage(component, initialState){
 
   return `<!doctype html>
     <html lang="en">
       <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-        <title>Job Application</title>
+        <title>Support System</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
       </head>
     <body>

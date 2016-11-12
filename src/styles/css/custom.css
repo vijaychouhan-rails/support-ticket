@@ -1,0 +1,237 @@
+body{
+  background-color: #f9f9f9;
+  font-size: 12px;
+}
+
+.error-message{
+  color: #D63A3A;
+}
+
+
+/*Spinner/Loader*/
+/* Absolute Center Spinner */
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 1500ms infinite linear;
+  -moz-animation: spinner 1500ms infinite linear;
+  -ms-animation: spinner 1500ms infinite linear;
+  -o-animation: spinner 1500ms infinite linear;
+  animation: spinner 1500ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+  box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/*End Spinner Loader*/
+
+.list-inline li{
+  height: 30px;
+}
+
+.activeTab{
+  color: red;
+  border-bottom: 1px solid red;
+}
+
+.tablist{
+  overflow: hidden;
+}
+
+.tablist-container{
+  margin-left: 0%;
+}
+
+.activeChk{
+  background-color: #93ccea;
+}
+
+.chkBox{
+  text-align: center;
+  height: 42px;
+  word-wrap: break-word;
+  border: 1px solid black;
+}
+
+.no-padding{
+  padding: 0;
+}
+
+.margin-top-job{
+  margin-top: 15px;
+}
+
+.full-fill{
+  display: block;
+  min-height: 100%; /* for the latest browsers which support min-height */
+  height: auto !important; /* for newer IE versions */
+  height: 100%; /* the only height-related attribute that IE6 does not ignore  */
+}
+
+.center-label{
+  padding-top: 10px;
+}
+
+.customTab > :first-child{
+  white-space: normal !important;
+}
+
+.btn-pend-job-group .btn{
+  font-size: 10px;
+}
+
+.top-margin-10{
+  margin-top: 10px;
+}
+
+.hour_price{
+  margin-top: 0;
+}
+
+.heart{
+  color: #F1E8E8;
+  background-color: gray;
+  border: 1px solid #D0B8B8;
+}
+
+.active-heart{
+  background-color: #D24949;
+  color: white;
+}
+
+.bottom-like-heart{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.relative{
+  position: relative;
+}
+
+.invited-users{
+  background-color: #7D7C7C;
+  color: white;
+  border: 1px solid #D0B8B8;
+}
+
+.margin-right-10{
+  margin-right: 10px;
+}
+
+.introduction-bottom{
+  margin-bottom: 25px;
+}
+
+.star-color{
+  color: rgb(245, 174, 6);
+}
+
+.pad-left-none{
+  padding-left: 0px;
+}
