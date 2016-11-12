@@ -1,5 +1,6 @@
 import * as types from '../constants/types';
 import 'whatwg-fetch';
+import {reset} from 'redux-form';
 
 import { push } from 'react-router-redux';
 
@@ -79,7 +80,8 @@ export function createUser({email, password, country, firstName, lastName}) {
             type: types.LOGIN_SUCCESS_USER,
             data: data
           })
-          dispatch(push('/search-job'));
+          dispatch(reset('SignUpForm')); 
+          dispatch(push('/'));
         }else{
           dispatch({
             type: types.CREATE_ERROR_USER,
