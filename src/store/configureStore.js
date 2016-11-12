@@ -20,7 +20,7 @@ import createCompressor from 'redux-persist-transform-compress'
 import createActionBuffer from 'redux-action-buffer'
 import {REHYDRATE} from 'redux-persist/constants'
 
-// import { REHYDRATED_DONE } from '../constants/types';
+import { REHYDRATED_DONE } from '../constants/types';
 
 export default function configureStore(i_state={}) {
   const middleware = routerMiddleware(browserHistory)
@@ -39,6 +39,10 @@ export default function configureStore(i_state={}) {
               )(createStore)(rootReducer, initialState)
 
   persistStore(store, {transforms: [expireTransform, compressor], whitelist: ['auth'], storage: localForage, keyPrefix: 'supportSystem' }, () => {
+      store.dispatch({
+        type: REHYDRATED_DONE
+      })
+      console.log('=======================store rehydration complete========================')
   })
 
   if (module.hot) {

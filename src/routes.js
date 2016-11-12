@@ -6,8 +6,9 @@ import Home from './components/Home';
 import SignIn from './containers/auth/SignIn';
 import SignUp from './containers/auth/SignUp';
 import CustomerDashboard from './containers/customer/Dashboard';
-
 import * as routesPath from './constants/routes';
+
+import {requireAuthentication} from './containers/AuthenticatedComponent';
 
 const routes = (
   <Router history={browserHistory}>
@@ -15,7 +16,7 @@ const routes = (
       <IndexRoute component={Home} />
       <Route path={routesPath.LOGIN} component={SignIn}/>
       <Route path={routesPath.REGISTER} component={SignUp}/>
-      <Route path={routesPath.CUSTOMER_DASHBOARD} component={CustomerDashboard}/>
+      <Route path={routesPath.CUSTOMER_DASHBOARD} component={requireAuthentication(CustomerDashboard)}/>
     </Route>
   </Router>
 )
