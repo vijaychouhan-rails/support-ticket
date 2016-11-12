@@ -1,4 +1,5 @@
 import * as types from '../constants/types';
+import * as routes from '../constants/routes';
 import 'whatwg-fetch';
 import {reset} from 'redux-form';
 
@@ -29,7 +30,7 @@ export function createSession({email, password}) {
             type: types.LOGIN_SUCCESS_USER,
             data: data
           })
-          dispatch(push('/'));
+          dispatch(push(routes.CUSTOMER_DASHBOARD));
         }else{
           dispatch({
             type: types.LOGIN_ERROR_USER,

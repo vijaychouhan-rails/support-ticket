@@ -8,6 +8,8 @@ import * as AuthActions from '../actions/auth';
 import { bindActionCreators } from 'redux';
 import { LinkContainer } from 'react-router-bootstrap';
 
+import * as routesPath from '../constants/routes';
+
 class Header extends React.Component {
   constructor(props) {
     super(props)
@@ -24,7 +26,7 @@ class Header extends React.Component {
     if (this.props.auth.getIn(['signedIn'])) {
       return (
         <Nav>
-          <LinkContainer to={{ pathname: '/support' }} className="nav-link">
+          <LinkContainer to={{ pathname: routesPath.CUSTOMER_DASHBOARD }} className="nav-link">
             <NavItem>Support</NavItem>
           </LinkContainer>
 
@@ -41,11 +43,11 @@ class Header extends React.Component {
     else{
       return(
         <Nav>
-          <LinkContainer to={{ pathname: '/login' }} className="nav-link">
+          <LinkContainer to={{ pathname: routesPath.LOGIN }} className="nav-link">
             <NavItem>Login</NavItem>
           </LinkContainer>
 
-          <LinkContainer to={{ pathname: '/register' }} className="nav-link">
+          <LinkContainer to={{ pathname: routesPath.REGISTER }} className="nav-link">
             <NavItem>SignUp</NavItem>
           </LinkContainer>
 
