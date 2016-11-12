@@ -13,7 +13,6 @@ export function checkAccessLevel(WrappedComponent) {
 
         checkAuth (isAuthenticated) {
             if(isClientSide()){
-              debugger
               if (isAuthenticated) {
                   const redirectAfterLogin = this.props.location.pathname;
                   browserHistory.push('/');

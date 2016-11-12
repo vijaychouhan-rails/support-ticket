@@ -9,13 +9,14 @@ import CustomerDashboard from './containers/customer/Dashboard';
 import * as routesPath from './constants/routes';
 
 import {requireAuthentication} from './containers/AuthenticatedComponent';
+import {checkAccessLevel} from './containers/PermissionComponent';
 
 const routes = (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
-      <Route path={routesPath.LOGIN} component={SignIn}/>
-      <Route path={routesPath.REGISTER} component={SignUp}/>
+      <Route path={routesPath.LOGIN} component={checkAccessLevel(SignIn)}/>
+      <Route path={routesPath.REGISTER} component={checkAccessLevel(SignUp)}/>
       <Route path={routesPath.CUSTOMER_DASHBOARD} component={requireAuthentication(CustomerDashboard)}/>
     </Route>
   </Router>
