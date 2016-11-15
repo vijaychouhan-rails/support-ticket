@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as AuthActions from '../../actions/auth';
 import { bindActionCreators } from 'redux';
-import Immutable from 'immutable';
-// import { RESET_AUTH_ERROR } from '../../constants/types';
 
 import { Field, reduxForm } from 'redux-form/immutable'
 
@@ -45,11 +43,6 @@ export class SignUp extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentWillMount(){
-    //resetting the error in auth
-   // this.props.dispatch({ type: RESET_AUTH_ERROR })
-  }
-
   renderField(field) {
     var options = {}
     var maxLengthOpt = (field.maxLength ? {maxLength: field.maxLength} : {})
@@ -66,6 +59,7 @@ export class SignUp extends React.Component {
   }
 
   handleSubmit({email, password, name}) {
+    debugger
     this.props.authActions.createUser({email, password, name})
   }
 
