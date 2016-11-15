@@ -2,8 +2,8 @@ import * as types from '../constants/types';
 import * as routes from '../constants/routes';
 import 'whatwg-fetch';
 import {reset} from 'redux-form';
-
 import { push } from 'react-router-redux';
+import { setHeaders, getHeaders } from '../utils/customHeader';
 
 export function createSession({email, password}) {
   return function(dispatch){
@@ -22,6 +22,9 @@ export function createSession({email, password}) {
         })
       })
       .then(function(response){
+        if(response.status==200){
+          setHeaders(response.headers)
+        }
         return(response.json());
       })
       .then(function(data){
@@ -52,33 +55,32 @@ export function destroySession() {
   }
 }
 
-export function createUser({email, password, country, firstName, lastName}) {
+export function createUser({email, password, name}) {
   return function(dispatch){
     dispatch({ type: types.CREATE_USER })
 
-    const url = API_URL + '/users'
+    const url = API_URL + '/auth'
     fetch(url, {
         method: 'POST',
         credentials: 'include',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
+        headers: getHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'
+        }),
         body: JSON.stringify({
           email: email,
           password: password,
-          first_name: firstName,
-          last_name: lastName,
-          country: country
+          name: name
         })
       })
       .then(function(response){
+        if(response.ok){
+          setHeaders(response.headers)
+        }
         return(response.json());
       })
       .then(function(data){
-        if (data.result==0){
+        if (data.status==='success'){
           dispatch({
-            type: types.LOGIN_SUCCESS_USER,
+            type: types.CREATE_SUCCESS_USER,
             data: data
           })
           dispatch(reset('SignUpForm')); 
@@ -86,53 +88,16 @@ export function createUser({email, password, country, firstName, lastName}) {
         }else{
           dispatch({
             type: types.CREATE_ERROR_USER,
-            data: data
+            errors: data.errors.full_messages.join(", ")
           })
         }
       })
       .catch(function(error){
-        console.log("Opps...", "Error while create user:: " + error);
-      })
-  }
-}
-
-export function changePassword({password, passwordConfirmation}, token) {
-  return function(dispatch){
-    dispatch({ type: types.CHANGE_PASSWORD })
-
-    const url = API_URL + "/users/change_password";
-    fetch(url, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          password: password,
-          password_confirmation: passwordConfirmation,
-          token: token
+        dispatch({
+          type: types.CREATE_ERROR_USER,
+          errors: ''
         })
-      })
-      .then(function(response){
-        return(response.json());
-      })
-      .then(function(data){
-        console.log("===================data forgotPassword==========", data)
-        if (data.result==0){
-          dispatch({
-            type: types.CHANGE_PASSWORD_SUCCESS
-          })
-          dispatch(push('/search-job'));
-        }else{
-          dispatch({
-            type: types.CHANGE_PASSWORD_ERROR,
-            data: data
-          })
-        }
-      })
-      .catch(function(error){
-        console.log("Opps...", "Error while create changePassword:: " + error);
+        console.log("Opps...", "Error while create user:: " + error);
       })
   }
 }
