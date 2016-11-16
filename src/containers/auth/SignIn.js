@@ -1,3 +1,4 @@
+//Sing-in container
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as AuthActions from '../../actions/auth';
@@ -8,6 +9,7 @@ import { Field, reduxForm } from 'redux-form/immutable'
 import { browserHistory, Link } from 'react-router';
 import _ from 'lodash';
 
+//client side validation
 const validate = values => {
   // IMPORTANT: values is an Immutable.Map here!
   const errors = {}
@@ -32,6 +34,7 @@ export class SignIn extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  //outer render component create
   renderField(field) {
     return(
       <div className={`margin-bottom-20 ${field.meta.touched && field.meta.error ? 'has-error' : ''}`}>

@@ -1,16 +1,21 @@
+//Server configuration
 require('babel-core/register')({
   presets: ['latest', 'react'],
 });
 
+//Used webpack
 var webpack = require('webpack')
 var webpackDevMiddleware = require('webpack-dev-middleware')
 var webpackHotMiddleware = require('webpack-hot-middleware')
 var config = require('./webpack.dev.config')
 var path = require('path')
+//Used expressjs
 var Express = require('express')
 var requestHandler = require('./requestHandler')
 
 var app = new Express()
+
+//Define the server port
 var port = 7770
 
 var compiler = webpack(config)

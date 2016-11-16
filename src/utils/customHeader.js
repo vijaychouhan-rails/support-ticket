@@ -23,3 +23,11 @@ export function setHeaders(headers) {
   cookie.save('uid', headers.get('uid'));
   cookie.save('client', headers.get('client'));
 }
+
+export function removeHeaders(){
+  cookie.remove('access-token');
+  cookie.remove('expiry');
+  cookie.remove('token-type');
+  cookie.remove('uid');
+  cookie.remove('client');
+}

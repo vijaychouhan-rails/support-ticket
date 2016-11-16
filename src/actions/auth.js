@@ -1,14 +1,27 @@
+//Action
+//We are using it to call API end points
+//We have used redux-thunk
 import * as types from '../constants/types';
 import * as routes from '../constants/routes';
 import 'whatwg-fetch';
+
+//Used to reset redux-form data
 import {reset} from 'redux-form';
 import { push } from 'react-router-redux';
-import { setHeaders, getHeaders } from '../utils/customHeader';
 
+//This is function that we are using to set and get headers 
+import { setHeaders, getHeaders, removeHeaders } from '../utils/customHeader';
+
+//Create user session
+//If it will be success then user will be login on their role based bashboard
+//like agent will be see agent dashboard
+//and customer will see customer dashboard
 export function createSession({email, password}) {
   return function(dispatch){
     dispatch({ type: types.LOGIN_USER })
+    //'/auth/sign_in' is api end points
     const url = API_URL + "/auth/sign_in";
+    //calling API with POST request
     fetch(url, {
         method: 'POST',
         credentials: 'include',
@@ -23,6 +36,7 @@ export function createSession({email, password}) {
       })
       .then(function(response){
         if(response.status==200){
+          //set the headers in cookies
           setHeaders(response.headers)
         }
         return(response.json());
@@ -33,6 +47,7 @@ export function createSession({email, password}) {
             type: types.LOGIN_SUCCESS_USER,
             data: data.data
           })
+          //Redirect user on dashboard 
           if(data.data.user_type==='agent'){
             dispatch(push(routes.AGENT_DASHBOARD));
           }else{
@@ -51,14 +66,19 @@ export function createSession({email, password}) {
   }
 }
 
+//Destroy user session
+//Removed the cookies
+//Update the state
 export function destroySession() {
   return function(dispatch){
     dispatch({ type: types.LOGOUT_USER })
     dispatch({ type: types.LOGOUT_SUCCESS_USER })
+    removeHeaders()
     dispatch(push('/'));
   }
 }
 
+//Creating Customer user
 export function createUser({email, password, name}) {
   return function(dispatch){
     dispatch({ type: types.CREATE_USER })

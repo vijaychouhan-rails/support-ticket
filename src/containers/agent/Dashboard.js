@@ -1,3 +1,6 @@
+//Dashboard of user agent
+//Here we are displaying support ticket list
+//Agent can update ticket status
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,7 +14,6 @@ export class Dashboard extends React.Component {
   constructor(props) {
     super(props)
     this.loadTickets = this.loadTickets.bind(this)
-    // this.handleChangeStatus = this.handleChangeStatus.bind(this)
   }
 
   componentWillMount(){

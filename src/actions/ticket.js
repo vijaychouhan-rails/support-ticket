@@ -3,8 +3,10 @@ import * as routes from '../constants/routes';
 import 'whatwg-fetch';
 import { push } from 'react-router-redux';
 import { setHeaders, getHeaders } from '../utils/customHeader';
+//We are using Immutablejs to Persistent Immutable data structures
 import Immutable from 'immutable';
 
+//Create ticket by customer user
 export function createTicket({subject, description}) {
   return function(dispatch){
     dispatch({ type: types.CREATE_CUSTOMER_TICKET })
@@ -42,6 +44,7 @@ export function createTicket({subject, description}) {
   }
 }
 
+//Display submitted ticket list to customer user
 export function ticketList() {
   return function(dispatch){
     dispatch({ type: types.CUSTOMER_TICKET_LIST })
@@ -74,6 +77,7 @@ export function ticketList() {
   }
 }
 
+//Display all the tickets to agent
 export function agentTicket() {
   return function(dispatch){
     dispatch({ type: types.AGENT_TICKET_LIST })
@@ -106,6 +110,7 @@ export function agentTicket() {
   }
 }
 
+//Update ticket status: Open => Work in Progress/Close
 export function updateTicket(id, status) {
   return function(dispatch){
     dispatch({ type: types.UPDATE_TICKET_STATUS })

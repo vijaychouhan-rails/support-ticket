@@ -15,6 +15,7 @@ import { persistStore, autoRehydrate } from 'redux-persist-immutable'
 // import localForage from 'localForage'
 import localForage from "localforage";
 
+//We are using REHYDRATE to persis redux-store when refresh browser.
 import createExpirationTransform from 'redux-persist-transform-expire';
 import createCompressor from 'redux-persist-transform-compress'
 import createActionBuffer from 'redux-action-buffer'

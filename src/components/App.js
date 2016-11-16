@@ -7,9 +7,11 @@ import { connect } from 'react-redux';
 if (typeof window != 'undefined' && window.document) {
   require('../styles/css/custom.css')
 }
-
+//Main component of ReactApp
 class App extends React.Component {
   render() {
+    //Wait until rehydratation is done
+    // we are using rehydration to maintain the store when referesh browser
     if(!this.props.customRehydrate.getIn(['rehydrated'])){
       return(
         <div>

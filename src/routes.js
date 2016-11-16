@@ -16,6 +16,7 @@ import * as routesPath from './constants/routes';
 import {requireAuthentication} from './containers/AuthenticatedComponent';
 import {checkAccessLevel} from './containers/PermissionComponent';
 
+//React routes defined
 const routes = (
   <Router history={browserHistory}>
     <Route path="/" component={App}>

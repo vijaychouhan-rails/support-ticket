@@ -1,3 +1,4 @@
+//Constant types that we are using to maintain the state
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGIN_SUCCESS_USER = 'LOGIN_SUCCESS_USER';
 export const LOGIN_ERROR_USER = 'LOGIN_ERROR_USER';

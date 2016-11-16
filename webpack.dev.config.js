@@ -77,6 +77,7 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     //global variable plugins
     new webpack.DefinePlugin({
+      //define the API server end points
       API_URL: JSON.stringify("http://localhost:3000"),
       'process.env': {
         'NODE_ENV': JSON.stringify('development')

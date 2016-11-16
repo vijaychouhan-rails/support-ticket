@@ -1,3 +1,7 @@
+//This is WrappedComponent
+//We are checking user authentication
+//Customer can't access Agent page
+//Agent can't access Customer page
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';

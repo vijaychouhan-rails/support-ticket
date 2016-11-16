@@ -1,3 +1,6 @@
+//This is WrappedComponent
+//We are checking user authentication here
+//if user is not signed in then redirecting on login page
 import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
