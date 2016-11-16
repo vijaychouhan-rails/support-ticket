@@ -12,12 +12,12 @@ export function requireAuthentication(WrappedComponent) {
         }
 
         checkAuth (isAuthenticated) {
-            if(isClientSide()){
-              if (!isAuthenticated) {
-                  const redirectAfterLogin = this.props.location.pathname;
-                  browserHistory.push(`/login?redirect=${redirectAfterLogin}`);
-              }
+          if(isClientSide()){
+            if (!isAuthenticated) {
+                const redirectAfterLogin = this.props.location.pathname;
+                browserHistory.push(`/login?redirect=${redirectAfterLogin}`);
             }
+          }
         }
 
         render () {

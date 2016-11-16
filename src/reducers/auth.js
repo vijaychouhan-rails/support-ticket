@@ -12,14 +12,14 @@ export default function auth(state = initialState, action) {
     case types.LOGIN_USER:
       return state.merge({signedIn: false, errors: null, submitting: true })
     case types.LOGIN_SUCCESS_USER:
-      return state.merge({signedIn: true, userId: data.user_id, errors: null, submitting: false })
+      return state.merge({signedIn: true, userId: data.user_id, errors: null, submitting: false, userType: data.user_type })
     case types.LOGIN_ERROR_USER:
-      return state.merge({errors: data.message, submitting: false })
+      return state.merge({errors: action.errors, submitting: false })
 
     case types.CREATE_USER:
       return state.merge({errors: null, submitting: true })
     case types.CREATE_SUCCESS_USER:
-      return state.merge({signedIn: true, userId: data.user_id, errors: null, submitting: false })
+      return state.merge({signedIn: true, userId: data.user_id, errors: null, submitting: false, userType: data.user_type })
     case types.CREATE_ERROR_USER:
       return state.merge({errors: action.errors, submitting: false })
 

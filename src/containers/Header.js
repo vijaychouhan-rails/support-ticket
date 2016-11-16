@@ -24,25 +24,40 @@ class Header extends React.Component {
 
   renderLinks() {
     if (this.props.auth.getIn(['signedIn'])) {
-      return (
-        <Nav>
-          <LinkContainer to={{ pathname: routesPath.CUSTOMER_DASHBOARD }} className="nav-link">
-            <NavItem>Support</NavItem>
-          </LinkContainer>
+      if(this.props.auth.get('userType')==='agent'){
+        return (
+          <Nav>
+            <LinkContainer to={{ pathname: routesPath.AGENT_DASHBOARD }} className="nav-link">
+              <NavItem>Support</NavItem>
+            </LinkContainer>
 
-          <LinkContainer to={{ pathname: routesPath.NEW_TICKET }} className="nav-link">
-            <NavItem>Create Ticket</NavItem>
-          </LinkContainer>
+            <LinkContainer to={{ pathname: '#' }} className="nav-link" onClick={(e)=> this.handleClick(e)}>
+              <NavItem>Logout</NavItem>
+            </LinkContainer>
 
-          <LinkContainer to={{ pathname: routesPath.TICKETS }} className="nav-link">
-            <NavItem>Ticket</NavItem>
-          </LinkContainer>
+          </Nav>
+        )
+      } else {
+        return (
+          <Nav>
+            <LinkContainer to={{ pathname: routesPath.CUSTOMER_DASHBOARD }} className="nav-link">
+              <NavItem>Support</NavItem>
+            </LinkContainer>
 
-          <LinkContainer to={{ pathname: '#' }} className="nav-link" onClick={(e)=> this.handleClick(e)}>
-            <NavItem>Logout</NavItem>
-          </LinkContainer>
-        </Nav>
-      )
+            <LinkContainer to={{ pathname: routesPath.NEW_TICKET }} className="nav-link">
+              <NavItem>Create Ticket</NavItem>
+            </LinkContainer>
+
+            <LinkContainer to={{ pathname: routesPath.TICKETS }} className="nav-link">
+              <NavItem>Ticket</NavItem>
+            </LinkContainer>
+
+            <LinkContainer to={{ pathname: '#' }} className="nav-link" onClick={(e)=> this.handleClick(e)}>
+              <NavItem>Logout</NavItem>
+            </LinkContainer>
+          </Nav>
+        )
+      }
     }
     else{
       return(

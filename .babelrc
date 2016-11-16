@@ -5,6 +5,7 @@
     "react"
   ],
   "plugins": [
+    "lodash",
     "transform-runtime",
     "transform-class-properties",
     "system-import-transformer"

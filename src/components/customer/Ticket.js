@@ -22,7 +22,7 @@ export default class Ticket extends React.Component {
                   <td><button className="btn btn-primary" type="button">{ticket.get('status')}</button></td>
                   <td>{ticket.get('subject')}</td>
                   <td>{ticket.get('message')}</td>
-                  <td>{ticket.get('updated_at')}</td>
+                  <td>{(new Date(ticket.get('updated_at'))).toDateString()}</td>
                 </tr>
               )
             })

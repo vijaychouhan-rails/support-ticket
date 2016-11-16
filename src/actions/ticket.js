@@ -23,13 +23,12 @@ export function createTicket({subject, description}) {
         return(response.json());
       })
       .then(function(data){
-        //Need to update according to api end point
-        if (true){
+        if (data.result){
           dispatch({
             type: types.CREATE_CUSTOMER_TICKET_SUCCESS,
             data: data
           })
-          dispatch(push(routes.CUSTOMER_DASHBOARD));
+          dispatch(push(routes.TICKETS));
         }else{
           dispatch({
             type: types.CREATE_CUSTOMER_TICKET_ERROR,
@@ -57,8 +56,7 @@ export function ticketList() {
         return(response.json());
       })
       .then(function(data){
-        //Need to update according to api end point
-        if (true){
+        if (data.result){
           dispatch({
             type: types.CUSTOMER_TICKET_LIST_SUCCESS,
             data: Immutable.fromJS(data.tickets)

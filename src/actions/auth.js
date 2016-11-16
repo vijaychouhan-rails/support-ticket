@@ -8,7 +8,7 @@ import { setHeaders, getHeaders } from '../utils/customHeader';
 export function createSession({email, password}) {
   return function(dispatch){
     dispatch({ type: types.LOGIN_USER })
-    const url = API_URL + "/session/create";
+    const url = API_URL + "/auth/sign_in";
     fetch(url, {
         method: 'POST',
         credentials: 'include',
@@ -28,16 +28,20 @@ export function createSession({email, password}) {
         return(response.json());
       })
       .then(function(data){
-        if (data.result==0){
+        if (!data.errors){
           dispatch({
             type: types.LOGIN_SUCCESS_USER,
-            data: data
+            data: data.data
           })
-          dispatch(push(routes.CUSTOMER_DASHBOARD));
+          if(data.data.user_type==='agent'){
+            dispatch(push(routes.AGENT_DASHBOARD));
+          }else{
+            dispatch(push(routes.CUSTOMER_DASHBOARD));  
+          }
         }else{
           dispatch({
             type: types.LOGIN_ERROR_USER,
-            data: data
+            errors: data.errors.join(", ")
           })
         }
       })
@@ -84,7 +88,11 @@ export function createUser({email, password, name}) {
             data: data
           })
           dispatch(reset('SignUpForm')); 
-          dispatch(push('/'));
+          if(data.data.user_type==='agent'){
+            dispatch(push(routes.AGENT_DASHBOARD));
+          }else{
+            dispatch(push(routes.CUSTOMER_DASHBOARD));  
+          }
         }else{
           dispatch({
             type: types.CREATE_ERROR_USER,
