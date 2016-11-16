@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import * as AuthActions from '../../actions/auth';
 import { bindActionCreators } from 'redux';
 import Immutable from 'immutable';
 

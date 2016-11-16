@@ -34,8 +34,8 @@ class Header extends React.Component {
             <NavItem>Create Ticket</NavItem>
           </LinkContainer>
 
-          <LinkContainer to={{ pathname: '/test' }} className="nav-link">
-            <NavItem>Test</NavItem>
+          <LinkContainer to={{ pathname: routesPath.TICKETS }} className="nav-link">
+            <NavItem>Ticket</NavItem>
           </LinkContainer>
 
           <LinkContainer to={{ pathname: '#' }} className="nav-link" onClick={(e)=> this.handleClick(e)}>
