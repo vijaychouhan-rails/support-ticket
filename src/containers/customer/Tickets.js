@@ -12,7 +12,6 @@ export class Ticket extends React.Component {
   }
 
   componentWillMount(){
-    console.log("===========1==================")
     this.props.ticketActions.ticketList()
   }
   

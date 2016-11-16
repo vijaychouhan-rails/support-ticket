@@ -59,7 +59,6 @@ export class SignUp extends React.Component {
   }
 
   handleSubmit({email, password, name}) {
-    debugger
     this.props.authActions.createUser({email, password, name})
   }
 
