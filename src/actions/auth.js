@@ -105,7 +105,7 @@ export function createUser({email, password, name}) {
         if (data.status==='success'){
           dispatch({
             type: types.CREATE_SUCCESS_USER,
-            data: data
+            data: data.data
           })
           dispatch(reset('SignUpForm')); 
           if(data.data.user_type==='agent'){

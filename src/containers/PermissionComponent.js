@@ -23,16 +23,6 @@ export function checkAccessLevel(WrappedComponent) {
             browserHistory.push(routesPath.NOT_AUTHORIZE);
           } 
         }
-
-        // checkAuth (isAuthenticated) {
-        //     if(isClientSide()){
-        //       if (isAuthenticated) {
-        //           const redirectAfterLogin = this.props.location.pathname;
-        //           browserHistory.push('/');
-        //       }
-        //     }
-        // }
-
         render () {
             return <WrappedComponent {...this.props} />
         }

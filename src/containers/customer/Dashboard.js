@@ -12,10 +12,6 @@ export class Dashboard extends React.Component {
     super(props)
   }
 
-  componentWillMount(){
-    console.log("============Component will mount==========")
-  }
-
   render() {
     return (
       <div> 
